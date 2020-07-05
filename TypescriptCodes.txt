@@ -1,0 +1,15 @@
+Run on Typescript playground:
+
+declare type length = {
+    length: number
+}
+
+function arrayLength<T extends length>(arr: T): number {
+    return arr.length;
+}
+
+console.log(arrayLength({
+    name: "Himanshu",
+    length: 10    
+}));
+
