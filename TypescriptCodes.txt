@@ -13,3 +13,24 @@ console.log(arrayLength({
     length: 10    
 }));
 
+-------------------------------------------------------------------
+
+interface xyz<T extends string, P extends number>{ 
+    name: T,
+    val: P
+}
+
+const abc = <M extends "yes" | "no", N extends 1 | 2, J extends xyz<M,N>>(info : {
+    [K in keyof J] : K extends keyof xyz<any, any> ? J[K] : never
+}) => info;
+
+console.log(abc({
+    name: "yes",
+    val: 1
+}));
+
+type arrayXYZ = xyz<"yes"|"no", 1|2|3|4|5>[];
+
+type arrayABC<Q extends arrayXYZ[any]['val']> =  Q;
+
+const mnc: arrayABC<1> = 1;
